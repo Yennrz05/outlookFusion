@@ -1,15 +1,21 @@
 
+import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import styles from '../styles/Dashboard.module.css';
 
 export default function Dashboard() {
+const [isOpenBar, setIsOpenBar] = useState(true
+
+  
+);
+
   return (
     <div className={styles.container}>
-      <Sidebar />
+      <Sidebar isOpenBar={isOpenBar} setIsOpenBar={setIsOpenBar} />
       
       <div className={styles.content}>
-        <Header title="Welcome to OutlookFusion! 👋" />
+        <Header title="Welcome to OutlookFusion! 👋" setIsOpenBar={setIsOpenBar} />
 
         <div className={styles.statsGrid}>
           <div className={styles.statCard}>
