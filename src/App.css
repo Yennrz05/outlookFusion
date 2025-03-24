@@ -1,38 +1,144 @@
-.App {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* Sign In Page Styles */
+.signin-container {
+  min-height: 100vh;
+  background-color: #1e2536;
+  display: flex;
+  flex-direction: column;
+}
+
+.signin-header {
+  padding: 1.5rem;
+}
+
+.signin-main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.signin-form-container {
+  width: 100%;
+  max-width: 28rem;
+  background-color: #252d3f;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.signin-form-container > * + * {
+  margin-top: 2rem;
+}
+
+.text-center {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.signin-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #e5e7eb;
+  margin-bottom: 0.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.signin-subtitle {
+  color: #9ca3af;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.signin-form {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #d1d5db;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: #1e2536;
+  border: 1px solid #374151;
+  border-radius: 0.5rem;
+  color: #e5e7eb;
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.checkbox-container {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 0.5rem;
+}
+
+.checkbox-container input {
+  background-color: #1e2536;
+  border: 1px solid #374151;
+  border-radius: 0.25rem;
+}
+
+.checkbox-container label {
+  font-size: 0.875rem;
+  color: #d1d5db;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: #2563eb;
   color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.App-link {
-  color: #61dafb;
+.submit-button:hover {
+  background-color: #1d4ed8;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.signup-text {
+  color: #9ca3af;
+}
+
+.signup-link {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
 }

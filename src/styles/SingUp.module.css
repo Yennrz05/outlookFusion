@@ -1,0 +1,146 @@
+.container {
+    min-height: 100vh;
+    background-color: #1e2536;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header {
+    padding: 1.5rem;
+  }
+  
+  .mainContent {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+  }
+  
+  .formContainer {
+    width: 100%;
+    max-width: 28rem;
+    background-color: #252d3f;
+    padding: 2rem;
+    border-radius: 0.5rem;
+  }
+  
+  .formContainer > * + * {
+    margin-top: 2rem;
+  }
+  
+  .textCenter {
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #e5e7eb;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    color: #9ca3af;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #d1d5db;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: #1e2536;
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+    color: #e5e7eb;
+  }
+  
+  .input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  }
+  
+  .passwordContainer {
+    position: relative;
+  }
+  
+  .passwordToggle {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+  }
+  
+  .termsContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .termsContainer input {
+    background-color: #1e2536;
+    border: 1px solid #374151;
+    border-radius: 0.25rem;
+  }
+  
+  .termsContainer label {
+    font-size: 0.875rem;
+    color: #d1d5db;
+  }
+  
+  .termsLink {
+    color: #3b82f6;
+    text-decoration: none;
+  }
+  
+  .termsLink:hover {
+    text-decoration: underline;
+  }
+  
+  .submitButton {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .submitButton:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .signinText {
+    color: #9ca3af;
+  }
+  
+  .signinLink {
+    color: #3b82f6;
+    text-decoration: none;
+  }
+  
+  .signinLink:hover {
+    text-decoration: underline;
+  }
