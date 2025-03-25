@@ -7,7 +7,7 @@ export default function Sidebar({ isOpenBar, setIsOpenBar }) {
   const navigate = useNavigate();
 
   return (
-    <div className={`bg-[#252d3f] p-6 space-y-8 transition-all duration-300 ease-in-out absolute md:relative ${
+    <div className={`bg-[#252d3f] p-6 space-y-8 transition-all duration-300 ease-in-out absolute md:relative h-screen ${
       isOpenBar ? 'w-full md:w-64' : 'w-0 overflow-hidden transition-all duration-300 ease-in-out px-0'
     }`}>
       <div onClick={() => {
