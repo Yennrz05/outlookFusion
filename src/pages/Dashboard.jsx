@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import styles from '../styles/Dashboard.module.css';
+import { MdOutlineEmail } from 'react-icons/md';
+import { FaChartPie, FaRegCalendarAlt } from 'react-icons/fa';
+import { LuSend } from 'react-icons/lu';
 
 export default function Dashboard() {
   const [isOpenBar, setIsOpenBar] = useState(true);
@@ -15,37 +18,43 @@ export default function Dashboard() {
         <Header title="Welcome to OutlookFusion! 👋" setIsOpenBar={setIsOpenBar} />
         <div className={styles.conten}>
           <div className={styles.statsGrid}>
-            <div className={styles.statCard}>
-              <div className={styles.statHeader}>
-                {/* <History className={styles.statIcon} /> */}
-                <span className={styles.statCount}>10</span>
+            <div className="bg-slate-800 p-6 rounded-xl">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                  <MdOutlineEmail className="text-blue-500" size={24} />
+                </div>
+                <div className="text-slate-400">Credits Available</div>
               </div>
-              <p className={styles.statLabel}>Credits Available</p>
+              <div className="text-4xl font-bold text-white">10</div>
+            </div>
+            <div className="bg-slate-800 p-6 rounded-xl">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
+                  <LuSend className="text-green-500" size={24} />
+                </div>
+                <div className="text-slate-400">Total Mails</div>
+              </div>
+              <div className="text-4xl font-bold text-white">4</div>
+            </div>
+            <div className="bg-slate-800 p-6 rounded-xl">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-yellow-500/20 flex items-center justify-center">
+                  <FaRegCalendarAlt className="text-yellow-500" size={24} />
+                </div>
+                <div className="text-slate-400">Pending Mails</div>
+              </div>
+              <div className="text-4xl font-bold text-white">25</div>
+            </div>
+            <div className="bg-slate-800 p-6 rounded-xl">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                  <FaChartPie className="text-purple-500" size={24} />
+                </div>
+                <div className="text-slate-400">Number of Retries</div>
+              </div>
+              <div className="text-4xl font-bold text-white">13</div>
             </div>
 
-            <div className={styles.statCard}>
-              <div className={styles.statHeader}>
-                {/* <Mail className={styles.statIcon} /> */}
-                <span className={styles.statCount}>4</span>
-              </div>
-              <p className={styles.statLabel}>Total Mails</p>
-            </div>
-
-            <div className={styles.statCard}>
-              <div className={styles.statHeader}>
-                {/* <LayoutDashboard className={styles.statIcon} /> */}
-                <span className={styles.statCount}>25</span>
-              </div>
-              <p className={styles.statLabel}>Pending Mails</p>
-            </div>
-
-            <div className={styles.statCard}>
-              <div className={styles.statHeader}>
-                {/* <AlertTriangle className={styles.statIcon} /> */}
-                <span className={styles.statCount}>13</span>
-              </div>
-              <p className={styles.statLabel}>Number of Retries</p>
-            </div>
           </div>
 
           <div className={styles.mainGrid}>
