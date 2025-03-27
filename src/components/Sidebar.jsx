@@ -22,7 +22,7 @@ export default function Sidebar({ isOpenBar, setIsOpenBar }) {
         </div>
       </div>
 
-      <div className="space-y-6 flex-shrink-0 h-full w-full md-w-64">
+      <div className="space-y-6 flex-shrink-0 h-[80%] w-full md-w-64">
         <div>
           <h3 className="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Main</h3>
           <div className="mt-2 space-y-1">
@@ -58,6 +58,13 @@ export default function Sidebar({ isOpenBar, setIsOpenBar }) {
             </Link>
           </div>
         </div>
+      </div>
+
+      <div class="bg-[#1e2536] rounded-[15px] p-[15px] flex items-center gap-[15px]">
+        <div class="w-20 h-20 rounded-full bg-[conic-gradient(at_top_right,violet,blue)]"></div>
+        <span>
+          2
+        </span>
       </div>
     </div>
   );
