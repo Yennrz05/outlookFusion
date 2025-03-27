@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import Logo from '../components/Logo';
@@ -7,6 +7,7 @@ import styles from '../styles/SingUp.module.css';
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -17,22 +18,21 @@ export default function SignUp() {
 
   const submit = async (data) => {
     console.log(data);
-    // try {
-    //   const response = await axios.post(
-    //     "https://aliglobalexpress.cloud/api/users/register",
-    //     {
-    //     first_name: data.name,
-    //     last_name: data.lastName,
-    //     email: data.email,
-    //     password: data.password
-    //     }
-    //   );
+    try {
+      const response = await axios.post(
+        "http://10.37.37.234:8000/api/register",
+        {
+          username: data.username,
+          email: data.email,
+          password: data.password
+        }
+      );
 
-   
+      localStorage.setItem("token", response.data.access_token);
+      navigate("/dashboard");
+    } catch (error) {
 
-    // } catch (error) {
-
-    // }
+    }
   };
 
 
@@ -41,7 +41,7 @@ export default function SignUp() {
       <div className={styles.header}>
         <Logo />
       </div>
-      
+
       <div className={styles.mainContent}>
         <div className={styles.formContainer}>
           <div className={styles.textCenter}>

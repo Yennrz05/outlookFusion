@@ -1,5 +1,6 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import styles from '../styles/Dashboard.module.css';
@@ -9,6 +10,23 @@ import { LuSend } from 'react-icons/lu';
 
 export default function Dashboard() {
   const [isOpenBar, setIsOpenBar] = useState(true);
+  const token = localStorage.getItem("token");
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`http://10.37.37.234:8000/api/protected`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [])
 
   return (
     <div className={styles.container}>

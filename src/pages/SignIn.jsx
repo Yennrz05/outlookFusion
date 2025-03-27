@@ -6,8 +6,11 @@ import Logo from '../components/Logo';
 import { useForm } from "react-hook-form";
 import styles from '../styles/SingIn.module.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import toast from 'react-hot-toast';
+import { dotPulse } from 'ldrs'
 
 export default function SignIn() {
+  dotPulse.register()
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const token = localStorage.getItem("token");
@@ -27,48 +30,49 @@ export default function SignIn() {
   const submit = async (data) => {
     console.log(data);
     setloading(true);
-    try {
-      const response = await axios.post(
-        "",
-        {
-          email: data.email,
-          password: data.password
-        }
-      );
-
-      if (response?.status == 200 && response?.data?.access_token !== "") {
-        localStorage.setItem("token", response.data.access_token);
-        localStorage.setItem("sesion", "activo");
-
-        // Guardar credenciales si "Remember Me" está marcado
-        if (rememberMe) {
-          localStorage.setItem("rememberedEmail", data.email);
-          localStorage.setItem("rememberedPassword", data.password);
-        } else {
-          // Limpiar credenciales guardadas si no está marcado
-          localStorage.removeItem("rememberedEmail");
-          localStorage.removeItem("rememberedPassword");
-        }
-
-        navigate("/inicio");
-        setloading(false);
+    axios.post(
+      "http://10.37.37.234:8000/api/login",
+      {
+        username_or_email: data.email,
+        password: data.password
       }
-    } catch (error) {
-      setloading(false);
-      console.log(error);
-    }
-  };
+    )
+      .then((response) => {
+        if (response?.status == 200 && response?.data?.access_token !== "") {
+          localStorage.setItem("token", response.data.access_token);
+          localStorage.setItem("sesion", "activo");
+
+          // Guardar credenciales si "Remember Me" está marcado
+          if (rememberMe) {
+            localStorage.setItem("rememberedEmail", data.email);
+            localStorage.setItem("rememberedPassword", data.password);
+          } else {
+            // Limpiar credenciales guardadas si no está marcado
+            localStorage.removeItem("rememberedEmail");
+            localStorage.removeItem("rememberedPassword");
+          }
+
+          navigate("/dashboard");
+          setloading(false);
+        }
+      })
+      .catch((error) => {
+        setloading(false);
+        toast.error("Incorrect credentials!");
+        console.log(error);
+      });
+  }
 
   useEffect(() => {
     const rememberedEmail = localStorage.getItem("rememberedEmail");
     const rememberedPassword = localStorage.getItem("rememberedPassword");
-    
+
     if (rememberedEmail && rememberedPassword) {
       setValue("email", rememberedEmail);
       setValue("password", rememberedPassword);
       setRememberMe(true);
     }
-  }, [setValue]); 
+  }, [setValue]);
 
   return (
     <div className={styles.container}>
@@ -87,7 +91,7 @@ export default function SignIn() {
 
           <form className={styles.form} onSubmit={handleSubmit(submit)}>
             <div className={styles.formGroup}>
-              <label className={styles.label}>Email or Username</label>
+              <label className={styles.label}>Email</label>
               <input
                 type="text"
                 placeholder="Enter your email or username"
@@ -130,7 +134,13 @@ export default function SignIn() {
             </div>
 
             <button type="submit" className={styles.submitButton}>
-              Sign in
+              {loading ?
+                <l-dot-pulse
+                  size="43"
+                  speed="1.3"
+                  color="white"
+                ></l-dot-pulse>
+                : "Sign In"}
             </button>
           </form>
 
@@ -144,4 +154,4 @@ export default function SignIn() {
       </div>
     </div>
   );
-}
+} 
