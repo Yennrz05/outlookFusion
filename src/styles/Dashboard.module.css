@@ -1,11 +1,16 @@
 .container {
   min-height: 100vh;
-  background-color: #1e2536;
+  background-color: #020617;
   display: flex;
 }
 
 .content {
   flex: 1;
+}
+
+.conten {
+  height: 95vh;
+  overflow-x: auto;
 }
 
 .statsGrid {
@@ -77,19 +82,17 @@
   gap: 1rem;
 }
 
-.activityList::-webkit-scrollbar{
- width: 8px;
- background-color: #374151;
- border-radius: 20px;
- }
-.activityList::-webkit-scrollbar:window-inactive {
- display: none;
- }
-.activityList::-webkit-scrollbar-thumb  {
- background-color: #3b82f6;
- border-radius: 6px;
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #374151;
+  border-radius: 20px;
+}
 
- }
+::-webkit-scrollbar-thumb {
+  background-color: #3b82f6;
+  border-radius: 6px;
+}
+
 .activityItem {
   display: flex;
   align-items: center;
@@ -226,4 +229,26 @@
   color: #4ade80;
   border-radius: 9999px;
   font-size: 0.875rem;
+}
+
+@media screen and (max-width: 868px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem;
+  }
+
+  .mainGrid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .statCount {
+    font-size: 1.5rem;
+  }
+
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
 }

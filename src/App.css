@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 
-
+body {
+  overflow: hidden;
+}
 /* Sign In Page Styles */
 .signin-container {
   min-height: 100vh;
