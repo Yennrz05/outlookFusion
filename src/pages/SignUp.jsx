@@ -4,6 +4,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import Logo from '../components/Logo';
 import styles from '../styles/SingUp.module.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -92,17 +93,9 @@ export default function SignUp() {
                   onClick={() => setShowPassword(!showPassword)}
                   className={styles.passwordToggle}
                 >
-                  {/* {showPassword ? <EyeOff size={20} /> : <Eye size={20} />} */}
+                  {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={19} />}
                 </button>
               </div>
-            </div>
-
-            <div className={styles.termsContainer}>
-              <input type="checkbox" id="terms" />
-              <label htmlFor="terms">
-                I agree to{' '}
-                <a href="#" className={styles.termsLink}>privacy policy & terms</a>
-              </label>
             </div>
 
             <button type="submit" className={styles.submitButton}>

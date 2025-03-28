@@ -9,7 +9,12 @@ import { FaChartPie, FaRegCalendarAlt } from 'react-icons/fa';
 import { LuSend } from 'react-icons/lu';
 
 export default function Dashboard() {
-  const [isOpenBar, setIsOpenBar] = useState(true);
+  const [isOpenBar, setIsOpenBar] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth > 500;
+    }
+    return false;
+  });
   const token = localStorage.getItem("token");
   const [userInfo, setUserInfo] = useState(null);
   const [data, setData] = useState(null);
@@ -29,8 +34,25 @@ export default function Dashboard() {
       });
   }
 
+  const welcome = () => {
+    axios
+      .get(`http://10.37.37.234:8000/api/dashboard/welcome`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+
   useEffect(() => {
     fetchData();
+    welcome();
     axios
       .get(`http://10.37.37.234:8000/api/protected`, {
         headers: {
@@ -50,40 +72,41 @@ export default function Dashboard() {
       <Sidebar isOpenBar={isOpenBar} setIsOpenBar={setIsOpenBar} />
 
       <div className={styles.content}>
-        <Header title="Welcome to OutlookFusion! 👋" setIsOpenBar={setIsOpenBar} />
+        <Header title={`Welcome to OutlookFusion! ${userInfo?.username ? userInfo.username : ""}👋`} setIsOpenBar={setIsOpenBar} />
         <div className={styles.conten}>
+          <span></span>
           <div className={styles.statsGrid}>
             {/* Tarjeta 1 */}
-            <div className="bg-slate-800 p-6 rounded-xl animate-fade-in-up opacity-0 [animation-fill-mode:forwards] [animation-delay:100ms]">
+            <div className="bg-slate-800 p-6 rounded-xl animate-fade-in-up opacity-0 [animation-fill-mode:forwards] [animation-delay:100ms] z-1">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
                   <MdOutlineEmail className="text-blue-500" size={24} />
                 </div>
                 <div className="text-slate-400">Credits Available</div>
               </div>
-              <div className="text-4xl font-bold text-white">10</div>
+              <div className="text-4xl font-bold text-white">{userInfo?.credits}</div>
             </div>
 
             {/* Tarjeta 2 */}
-            <div className="bg-slate-800 p-6 rounded-xl animate-fade-in-up opacity-0 [animation-fill-mode:forwards] [animation-delay:300ms]">
+            <div className="bg-slate-800 p-6 rounded-xl animate-fade-in-up opacity-0 [animation-fill-mode:forwards] [animation-delay:300ms] z-1">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
                   <LuSend className="text-green-500" size={24} />
                 </div>
                 <div className="text-slate-400">Total Mails</div>
               </div>
-              <div className="text-4xl font-bold text-white">4</div>
+              <div className="text-4xl font-bold text-white">{userInfo?.total_mails}</div>
             </div>
 
             {/* Tarjeta 3 */}
-            <div className="bg-slate-800 p-6 rounded-xl animate-fade-in-up opacity-0 [animation-fill-mode:forwards] [animation-delay:500ms]">
+            <div className="bg-slate-800 p-6 rounded-xl animate-fade-in-up opacity-0 [animation-fill-mode:forwards] [animation-delay:500ms] z-1">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-lg bg-yellow-500/20 flex items-center justify-center">
                   <FaRegCalendarAlt className="text-yellow-500" size={24} />
                 </div>
                 <div className="text-slate-400">Pending Mails</div>
               </div>
-              <div className="text-4xl font-bold text-white">25</div>
+              <div className="text-4xl font-bold text-white">{userInfo?.pending_mails}</div>
             </div>
 
             {/* Tarjeta 4 */}
@@ -94,7 +117,7 @@ export default function Dashboard() {
                 </div>
                 <div className="text-slate-400">Number of Retries</div>
               </div>
-              <div className="text-4xl font-bold text-white">13</div>
+              <div className="text-4xl font-bold text-white">{userInfo?.number_of_retries}</div>
             </div>
           </div>
           <div className={styles.mainGrid}>

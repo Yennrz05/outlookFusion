@@ -244,6 +244,10 @@
 }
 
 @media screen and (max-width: 568px) {
+  .statsGrid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
   .statCount {
     font-size: 1.5rem;
   }
